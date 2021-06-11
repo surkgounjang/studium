@@ -1,0 +1,56 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Klicker Game</title>
+        <link rel="stylesheet" href="main.css"> <!--rel: relation의 약자. (해석)이 HTML문서에 링크부탁 드릴께요. 이 HTML문서와 관계(rel)는 stylesheet이고요 이 파일은 이 위치(href)에 있어요-->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!--이 코드를 입력해야 HTML-document에서 Vue.js 프레임워크를 사용할 수 있음.-->
+    </head>
+
+    <body>
+        <!--Vue-Instance를 이용하기 위한 컨테이너(container)-->
+        <div id="app" v-bind:class="{darkmode:darkmodeActive}"> <!--main.css에 정의되어 있는 .darkmode 스타일을 HTML 문서전체에 적용하기 위해서는 darkmodeActive 값이 true. 현재는 false--> 
+            <div class="wrapper">
+                <h1 class="title">Cryto Miner 2.0</h1>
+                <div class="spielfeld">
+                    <p>{{cryptoMenge}} Crypto Coins</p> <!--Anzeige: Wieviele Krytowärung wurde erspielt? 얼마나 많은 가상화폐가 노름에 투입되었는가?-->
+                    <p>Aktuelle Cryto conins per Klick: {{cryptoModifikator}}</p> <!--wie viele Krytowährung wird per Klick erhalten?-->
+                    <button v-on:click="addCrypto">Mine-Button</button>
+
+                    <!--Aufgabe 2-->
+                    <div v-for="upgrade in upgradeList">{{upgrade.name}} {{upgrade.number}}</div>
+                </div> 
+                    
+                <div class="upgrades"> <!--4개의 upgrades 버튼-->
+                    <p>
+                        <button v-on:click="increaseModifier('botminer')">Bot Miner</button> <!--" "안에 " "를 쓸 수 없다. 예: "increase("botminer")"-->
+                        Preis für Upgrades: 10 Coins.
+                    </p>
+                    <p>
+                        <button v-on:click="increaseModifier('rtx3090')">RTX 3090</button>
+                        Preis für Upgrades: 50 Coins.
+                    </p>
+                    <p>
+                        <button v-on:click="increaseModifier('botnetzwerk')">Bot Net</button>
+                        Preis für Upgrades: 100 Coins.
+                    </p>
+                    <p>
+                        <button v-on:click="increaseModifier('serverraum')">Serverraum</button>
+                        Preis für Upgrades: 500 Coins.
+                    </p>
+                </div>
+
+                <!---->
+                <div class="options"> <!--main.css에 정의되어 있는 .options 스타일을 적용-->
+                    <button v-on:click="toggleOptions">Options</button> <!--아래 v-if 조건문 실행을 위한 options 속성값을 조정-->
+                    <div v-if="options"> <!--data에 있는 options 값이 true이면 다크모드 변경을 위한 toggleMode 함수가 정의되어 있는 버튼 2개가 실행-->
+                        <button @click="toggleMode">Light Mode</button>
+                        <button @click="toggleMode">Dark Mode</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="main.js"></script> <!--이 코드를 반드시 입력해야 Vue가 정의된 main.js 파일을 불러와 이 HTML 문서에 적용할 수 있다.-->
+    </body>
+</html>
+
