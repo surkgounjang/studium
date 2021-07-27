@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Klicker Game</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="main.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+
+    <body>
+        <div id="app" v-bind:class="{darkmode:darkmodeActive}">
+            <div class="wrapper"><!--Übung 2에서 실습한 display:grid 적용-->
+                <h1 class="title">Crypto Miner 2.0</h1>
+
+                <div class="spielfeld">
+                    <h2>Spielfeld</h2>
+
+                    <div class="spielerZustand">
+                        <h3>Zustand: Spieler</h3>
+
+                        <ul>
+                            <li style="color: red;font-weight: 600;">Sie haben jetzt {{cryptoMenge}} Crypto Coins</li>
+                            <li>Aktuelle Crypto Coins per Click: {{cryptoModifikator}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="upgadeZustand">
+                        <h3>Zustand: Upgrade</h3>
+                        
+                        <table>
+                            <thead> 
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Anzahl von Upgrades</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr v-for="item in upgradeListe">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.anzahlVonUpgrades}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button v-on:click='addCrypto' style="float: right;" title="Wenn Sie den Button anklicken, steigt Crypto Conins auf.">Meine Cryptocoin</button>
+                </div> <!--class spielfeld end-->
+
+                <div class="upgrades">
+                    <h3>Upgrade Methods </h3>
+
+                    <ul>
+                        <li>
+                            <button v-on:click="increaseModidifier('botminer')">Bot Miner</button>
+                        </li>
+                        <li>
+                            <button v-on:click="increaseModidifier('rtx3090')">RTX 3090</button>
+                        </li>
+                        <li>
+                            <button v-on:click="increaseModidifier('botnetzwerk')">Bot Netzwerk</button>
+                        </li>
+                        <li>
+                            <button v-on:click="increaseModidifier('serverraum')">Serverraum</button>
+                        </li>
+                    </ul>
+
+                    <p style="color:red;font-weight: 600;">Information: {{informationText}}</p>
+                </div> <!--class upgrades end-->
+
+                <div class="options">
+                    <h3>Darkmode Option: <button v-on:click="toggleOption" title="Wenn Sie den Button anklicken, erscheinen Darkmode Button">Darkmode Button Active</button></h3>
+
+                    <div v-if="option">
+                        <button v-on:click="toggleDarkmodeActive">Light Mode</button>
+                        <button v-on:click="toggleDarkmodeActive">Dark mode</button>
+                    </div>
+                </div> <!--class options end-->
+            </div> <!--wrapper end-->
+
+        </div>
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+.title{
+    grid-area:title;
+}
+
+.spielfeld{
+    grid-area: spielfeld;
+}
+
+.upgrades{
+    grid-area: upgrades;
+}
+
+.options{
+    grid-area: options;
+}
+.wrapper{
+    display:grid;
+    grid-gap:10px 10px;
+    grid-template-areas:
+    "title title"
+    "spielfeld upgrades"
+    "options options" /*for darkmode*/
+}
+
+.wrapper>*{
+    border:2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/*for table*/
+table{
+    border:2px solid black;
+    border-collapse: collapse; /*경계선 두 줄을 한 줄로*/
+
+    text-align: center;
+}
+
+th,td{
+    border:1px solid black;
+    padding: 5px;
+}
+
+th{
+    background-color: teal;
+}
+
+/*for darkmode*/
+.darkmode{
+    background-color: black;
+    color:white;
+}
